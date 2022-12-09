@@ -52,6 +52,9 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.prep.outputs.tags }}
           labels: ${{ steps.prep.outputs.labels }}
+          secrets: |
+            GIT_AUTH_TOKEN=${{ secrets.GH_TOKEN }}
+
       # - name: Update Description
       #   continue-on-error: true
       #   uses: peter-evans/dockerhub-description@v3
