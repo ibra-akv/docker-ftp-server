@@ -53,11 +53,10 @@ jobs:
       - name: Build and Push
         uses: docker/build-push-action@v3
         with:
-          repository: ibragim/docker-ftp-server
           context: .
           platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/s390x
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ibragim/docker-ftp-server
+          tags: ibragim/docker-ftp-server:${{ steps.prep.outputs.tags }}
           labels: ${{ steps.prep.outputs.labels }}
           secrets: |
             "github_token=${{ secrets.GH_TOKEN }}"
