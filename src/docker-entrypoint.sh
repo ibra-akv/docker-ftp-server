@@ -39,6 +39,7 @@ echo "$FTP_USER:$FTP_PASS" | /usr/sbin/chpasswd
 
 if [[ -z "$FTP_USER2" ]]; then
 	# nothing to do
+	echo ""
 else
 	mkdir -p /home/$FTP_USER2
 	chown -R $FTP_USER2:$FTP_USER2 /home/$FTP_USER2
