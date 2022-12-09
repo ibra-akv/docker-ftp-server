@@ -52,11 +52,11 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.prep.outputs.tags }}
           labels: ${{ steps.prep.outputs.labels }}
-      - name: Update Description
-        continue-on-error: true
-        uses: peter-evans/dockerhub-description@v3
-        with:
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-          repository: ${{ github.repository_owner }}/ftp-server
-          short-description: ${{ github.event.repository.description }}
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
+      # - name: Update Description
+      #   continue-on-error: true
+      #   uses: peter-evans/dockerhub-description@v3
+      #   with:
+      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
+      #     repository: ${{ github.repository_owner }}/ftp-server
+      #     short-description: ${{ github.event.repository.description }}
+      #     username: ${{ secrets.DOCKERHUB_USERNAME }}
