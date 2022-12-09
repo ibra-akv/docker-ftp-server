@@ -3,7 +3,7 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     reviewers:
-      - "garethflowers"
+      - "ibra-akv"
     schedule:
       interval: "daily"
   - package-ecosystem: "docker"
@@ -12,6 +12,6 @@ updates:
       prefix: "chore"
     directory: "/"
     reviewers:
-      - "garethflowers"
+      - "ibra-akv"
     schedule:
       interval: "daily"
