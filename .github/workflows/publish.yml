@@ -53,15 +53,11 @@ jobs:
       - name: Build and Push
         uses: docker/build-push-action@v3
         with:
-          image: ibragim/docker-ftp-server
-          registry: docker.io
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-          # context: .
+          context: .
           platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/s390x
-          # push: ${{ github.event_name != 'pull_request' }}
-          # tags: latest
-          # labels: ${{ steps.prep.outputs.labels }}
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.prep.outputs.tags }}
+          labels: ${{ steps.prep.outputs.labels }}
       # - name: Update Description
       #   continue-on-error: true
       #   uses: peter-evans/dockerhub-description@v3
