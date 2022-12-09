@@ -13,21 +13,27 @@ adduser \
 	-u $UID \
 	$FTP_USER
 
-if [[ -v "$FTP_USER2" ]]; then
-	adduser \
+if [[ -z "$FTP_USER2" ]]; then
+	echo "2nd user will not be created."
+else
+
+adduser \
 		 -D \
 		 -G $FTP_USER2 \
 		 -h /home/$FTP_USER2 \
 		 -s /bin/false \
 		 -u $UID \
 		 $FTP_USER2
+
 fi
 
 mkdir -p /home/$FTP_USER
 chown -R $FTP_USER:$FTP_USER /home/$FTP_USER
 echo "$FTP_USER:$FTP_PASS" | /usr/sbin/chpasswd
 
-if [[ -v "$FTP_USER2" ]]; then
+if [[ -z "$FTP_USER2" ]]; then
+	# nothing to do
+else
 	mkdir -p /home/$FTP_USER2
 	chown -R $FTP_USER2:$FTP_USER2 /home/$FTP_USER2
 	echo "$FTP_USER2:$FTP_PASS2" | /usr/sbin/chpasswd
