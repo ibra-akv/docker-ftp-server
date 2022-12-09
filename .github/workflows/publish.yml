@@ -42,13 +42,13 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Login to GHCR
-        if: github.event_name != 'pull_request'
-        uses: docker/login-action@v2
-        with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GH_TOKEN }}
+      # - name: Login to GHCR
+      #   if: github.event_name != 'pull_request'
+      #   uses: docker/login-action@v2
+      #   with:
+      #     registry: ghcr.io
+      #     username: ${{ github.repository_owner }}
+      #     password: ${{ secrets.GH_TOKEN }}
 
       - name: Build and Push
         uses: docker/build-push-action@v3
@@ -56,8 +56,8 @@ jobs:
           context: .
           platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/s390x
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ibragim/docker-ftp-server:${{ steps.prep.outputs.tags }}
-          labels: ${{ steps.prep.outputs.labels }}
+          tags: ibragim/docker-ftp-server:${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
           secrets: |
             "github_token=${{ secrets.GH_TOKEN }}"
 
