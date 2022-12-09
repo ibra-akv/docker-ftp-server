@@ -17,13 +17,18 @@ if [[ -z "$FTP_USER2" ]]; then
 	echo "2nd user will not be created."
 else
 
-adduser \
-		 -D \
-		 -G $FTP_USER2 \
-		 -h /home/$FTP_USER2 \
-		 -s /bin/false \
-		 -u $UID \
-		 $FTP_USER2
+	addgroup \
+		-g $GID \
+		-S \
+		$FTP_USER2
+
+	adduser \
+			-D \
+			-G $FTP_USER2 \
+			-h /home/$FTP_USER2 \
+			-s /bin/false \
+			-u $UID \
+			$FTP_USER2
 
 fi
 
